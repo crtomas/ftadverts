@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#*****************************************
+#Teamcity BuildStep: Command Line
+#chmod a+x teamcity_build_step.sh
+#./teamcity_build_step.sh %build.number%
+#*****************************************
+
 #$1 Teamcity %build.number%
 
 microservice="ftadverts/api"
