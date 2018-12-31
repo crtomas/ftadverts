@@ -27,7 +27,7 @@ namespace api
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello FTAdverts api!");
+                await context.Response.WriteAsync("{\"api\": \"ftadverts\"}");
             });
         }
     }
