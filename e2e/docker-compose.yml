@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+  ftadvertsapi:
+    image: 192.168.99.100:55000/ftadverts/api:ci-${GENERATOR_BUILD_NUMBER-1}
+  e2e:
+    image: 192.168.99.100:55000/ftadverts/e2e:ci-${BUILD_NUMBER-1}
+    build: .
+    environment:
+      - TEAMCITY_PROJECT_NAME
