@@ -1,4 +1,6 @@
 #!/bin/bash
+#https://stackoverflow.com/questions/29568352/using-docker-compose-with-ci-how-to-deal-with-exit-codes-and-daemonized-linked
+set -e
 
 #*****************************************
 #Teamcity BuildStep: Command Line
@@ -8,3 +10,6 @@
 
 docker-compose up --force-recreate --abort-on-container-exit --build
 docker-compose down
+
+exit $(docker-compose -f docker-compose.ci.build.yml ps -q | tr -d '[:space:]' |
+  xargs docker inspect -f '{{ .State.ExitCode }}' | grep -v 0 | wc -l | tr -d '[:space:]')
