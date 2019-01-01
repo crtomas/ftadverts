@@ -27,6 +27,7 @@ namespace e2e
                 response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
                 var actual = JObject.Parse(content);
+				Console.WriteLine($"API Response: {actual}");
                 var expected = JObject.Parse("{\"api\": \"ftadverts\"}");
 
                 actual.Should().BeEquivalentTo(expected);
