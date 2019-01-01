@@ -11,5 +11,5 @@ set -e
 docker-compose up --force-recreate --abort-on-container-exit --build
 docker-compose down
 
-exit $(docker-compose -f docker-compose.ci.build.yml ps -q | tr -d '[:space:]' |
+exit $(docker-compose ps -q | tr -d '[:space:]' |
   xargs docker inspect -f '{{ .State.ExitCode }}' | grep -v 0 | wc -l | tr -d '[:space:]')

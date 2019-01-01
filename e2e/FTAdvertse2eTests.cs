@@ -1,6 +1,6 @@
 using System;
 using Xunit;
-using FluentAssertions;
+using FluentAssertions.Json;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
@@ -31,7 +31,8 @@ namespace e2e
 				Console.WriteLine($"Actual API Response: {actual}");                
                 Console.WriteLine($"Expected API Response: {expected}");
 
-                actual["api"].Should().BeEquivalentTo(expected["api"]);
+                actual.Should().HaveElement("api")
+                               .Which.Should().BeEquivalentTo("ftadverts");
             }                     
             
         }
