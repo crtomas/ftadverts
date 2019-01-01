@@ -28,14 +28,9 @@ namespace e2e
                 response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
                 var actual = JToken.Parse(content);
-                var expected = JToken.Parse(@"{ ""api"" : ""ftadverts"" }");                
+                var expected = JToken.Parse(@"{ ""api"" : ""ftadvertsv2"" }");                
 				Console.WriteLine($"Actual API Response: {actual}");                
                 Console.WriteLine($"Expected API Response: {expected}");
-
-                /* 
-                actual.Should().HaveElement("api")
-                               .Which.Should().BeEquivalentTo("ftadverts");
-                */
 
                 actual.Should().BeEquivalentTo(expected);                
             }                     
