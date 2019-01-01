@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using FluentAssertions;
 using FluentAssertions.Json;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -26,13 +27,17 @@ namespace e2e
             {
                 response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
-                var actual = JObject.Parse(content);
-                var expected = JObject.Parse("{\"api\": \"ftadverts\"}");
+                var actual = JToken.Parse(content);
+                var expected = JToken.Parse(@"{ ""api"" : ""ftadverts"" }");                
 				Console.WriteLine($"Actual API Response: {actual}");                
                 Console.WriteLine($"Expected API Response: {expected}");
 
+                /* 
                 actual.Should().HaveElement("api")
                                .Which.Should().BeEquivalentTo("ftadverts");
+                */
+
+                actual.Should().BeEquivalentTo(expected);                
             }                     
             
         }
