@@ -31,8 +31,7 @@ namespace e2e
 				Console.WriteLine($"Actual API Response: {actual}");                
                 Console.WriteLine($"Expected API Response: {expected}");
 
-                actual.api.Should().BeEquivalentTo(expected.api);
-
+                actual["api"].Should().BeEquivalentTo(expected["api"]);
             }                     
             
         }
