@@ -27,10 +27,11 @@ namespace e2e
                 response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
                 var actual = JObject.Parse(content);
-				Console.WriteLine($"API Response: {actual}");
                 var expected = JObject.Parse("{\"api\": \"ftadverts\"}");
+				Console.WriteLine($"Actual API Response: {actual}");                
+                Console.WriteLine($"Expected API Response: {expected}");
 
-                actual.Should().BeEquivalentTo(expected);
+                actual.Content.Should().BeEquivalentTo(expected.Content);
 
             }                     
             
