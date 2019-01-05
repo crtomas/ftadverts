@@ -7,4 +7,4 @@ RUN dotnet restore
 
 COPY . .
 
-ENTRYPOINT ["dotnet","test"]
+ENTRYPOINT ["dotnet","test  --verbosity normal"]
