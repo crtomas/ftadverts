@@ -11,5 +11,7 @@ set -e
 docker-compose up --force-recreate --abort-on-container-exit --build
 docker-compose down
 
+docker rmi 192.168.99.100:55000/ftadverts/e2e:ci-${BUILD_NUMBER-1}
+
 exit $(docker-compose ps -q | tr -d '[:space:]' |
   xargs docker inspect -f '{{ .State.ExitCode }}' | grep -v 0 | wc -l | tr -d '[:space:]')
