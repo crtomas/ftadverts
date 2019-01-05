@@ -8,7 +8,7 @@ set -e
 #./teamcity_build_e2e_step.sh %build.number%
 #*****************************************
 
-docker-compose up --force-recreate --abort-on-container-exit --build
+docker-compose --verbose up --force-recreate --abort-on-container-exit --build
 docker-compose down
 
 docker rmi 192.168.99.100:55000/ftadverts/e2e:ci-${BUILD_NUMBER-1}
