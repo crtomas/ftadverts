@@ -4,8 +4,8 @@ set -e
 
 #*****************************************
 #Teamcity BuildStep: Command Line
-#chmod a+x teamcity_build_step.sh
-#./teamcity_build_e2e_step.sh %build.number%
+#chmod a+x teamcity_e2e_build_step.sh
+#./teamcity_e2e_build_step.sh %build.number%
 #*****************************************
 
 docker-compose --verbose up --force-recreate --abort-on-container-exit --build
