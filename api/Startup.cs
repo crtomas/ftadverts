@@ -27,7 +27,7 @@ namespace api
             }
 
             app.UseCors(builder =>
-                builder.WithOrigins("http://192.168.99.100").AllowAnyMethod()
+                builder.WithOrigins("http://192.168.99.100").AllowAnyMethod().AllowAnyHeader()
             );
 
             app.Run(async (context) =>
