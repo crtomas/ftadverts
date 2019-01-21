@@ -21,3 +21,6 @@ echo $latest
 docker build -t $image -t $latest .
 docker push $image
 docker push $latest
+
+exit $(docker-compose ps -q | tr -d '[:space:]' |
+     xargs docker inspect -f '{{ .State.ExitCode }}' | grep -v 0 | wc -l | tr -d '[:space:]')
