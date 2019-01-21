@@ -13,8 +13,8 @@ COPY api/api.csproj ./api/
 RUN dotnet restore api/api.csproj
 
 COPY tests/tests.csproj ./tests/
-#RUN dotnet restore tests/tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-RUN dotnet restore tests/tests.csproj
+RUN dotnet restore tests/tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+#RUN dotnet restore tests/tests.csproj
 
 #Uncomment to inspect what files are being copied in
 #RUN ls -alR
@@ -24,12 +24,15 @@ COPY . .
 
 #test
 ENV TEAMCITY_PROJECT_NAME=fake
-RUN dotnet test tests/tests.csproj --verbosity normal
+#RUN dotnet test tests/tests.csproj --verbosity normal
+RUN dotnet test tests/tests.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --verbosity normal
 
 ENV PATH="$PATH:/root/.dotnet/tools"
 RUN dotnet build-server shutdown
 #RUN dotnet sonarscanner begin /k:"ftadvertsapi" /d:sonar.host.url=http://192.168.99.100:9000 /d:sonar.cs.opencover.reportsPaths="/testcoverage/calculation.tests/coverage.opencover.xml" /d:sonar.coverage.exclusions="**Tests*.cs"
-RUN dotnet sonarscanner begin /k:"ftadvertsapi" /d:sonar.host.url=http://192.168.99.100:9000
+#RUN dotnet sonarscanner begin /k:"ftadvertsapi" /d:sonar.host.url=http://192.168.99.100:9000
+RUN dotnet sonarscanner begin /k:"ftadvertsapi" /d:sonar.host.url=http://192.168.99.100:9000 /d:sonar.cs.opencover.reportsPaths="/tests/coverage.opencover.xml" /d:sonar.coverage.exclusions="**Tests*.cs"
+
 RUN dotnet build
 RUN dotnet sonarscanner end
 
