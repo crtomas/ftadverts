@@ -15,6 +15,14 @@ namespace api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+			//https://github.com/Microsoft/aspnet-api-versioning/tree/master/samples/aspnetcore/BasicSample
+            //services.AddApiVersioning(
+            //    options =>
+            //    {
+            //        // reporting api versions will return the headers "api-supported-versions" and "api-deprecated-versions"
+            //        options.ReportApiVersions = true;
+			//} );	
+			//
             services.AddCors(o => o.AddPolicy("AllowAllOrigins", builder =>
             {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
