@@ -25,7 +25,7 @@ namespace e2e
             Console.WriteLine($"Checking ftadverts.api: {CheckApi.RequestUri}");
             using (var response = await client.SendAsync(CheckApi))
             {
-				Assert.AreEqual(200, (int)response.StatusCode);
+				Assert.Equal(200, (int)response.StatusCode);
             }                     
         }		
 		
