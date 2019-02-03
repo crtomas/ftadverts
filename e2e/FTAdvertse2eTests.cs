@@ -25,9 +25,7 @@ namespace e2e
             Console.WriteLine($"Checking ftadverts.api: {CheckApi.RequestUri}");
             using (var response = await client.SendAsync(CheckApi))
             {
-                //response.EnsureSuccessStatusCode();
-				var actual = response.StatusCode;
-				actual.Should.BeEquivalentTo(200);
+				Assert.True(response.StatusCode == 200)
             }                     
         }		
 		
@@ -60,9 +58,11 @@ namespace e2e
 				//JToken.Parse(json).SelectToken("$[0]").Value<string>().Should().Be("value1");
 				//JToken.Parse(json).SelectToken("$[1]").Value<string>().Should().Be("value2");
 
+				/*
 				JToken.Parse(actual).SelectTokens("$").Values<string>().Should()
 					.HaveCount(2)
 					.And.Equal("api", expected);				
+				*/
             }                     
             
         }
