@@ -26,7 +26,8 @@ namespace e2e
             using (var response = await client.SendAsync(CheckApi))
             {
                 //response.EnsureSuccessStatusCode();
-				response.StatusCode.Should.BeEquivalentTo(200);
+				var actual = response.StatusCode;
+				actual.Should.BeEquivalentTo(200);
             }                     
         }		
 		
@@ -55,11 +56,11 @@ namespace e2e
                 //actual.Should().BeEquivalentTo(expected);                
 				//JToken.Parse(actual).Should().HaveCount(2);
 				
-				JToken.Parse(json).Should().HaveCount(2);
+				JToken.Parse(actual).Should().HaveCount(2);
 				//JToken.Parse(json).SelectToken("$[0]").Value<string>().Should().Be("value1");
 				//JToken.Parse(json).SelectToken("$[1]").Value<string>().Should().Be("value2");
 
-				JToken.Parse(json).SelectTokens("$").Values<string>().Should()
+				JToken.Parse(actual).SelectTokens("$").Values<string>().Should()
 					.HaveCount(2)
 					.And.Equal("api", expected);				
             }                     
